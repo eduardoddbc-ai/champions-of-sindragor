@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Champions of Sindragor</title>
+  <style>
+    *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#090d14;color:#e9edf5;font-family:Arial,sans-serif}body{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}.card{width:min(560px,100%);background:#111824;border:1px solid #3b4657;border-radius:18px;padding:28px;box-shadow:0 24px 70px #0008}h1{margin:0 0 6px;font-family:Georgia,serif;color:#d9b76a;font-size:30px}h2{margin:0 0 26px;font-size:14px;color:#919cad;font-weight:normal;letter-spacing:2px}label{display:block;margin:18px 0 8px;font-size:13px;color:#c8d0dc}input{width:100%;padding:15px;border-radius:10px;border:1px solid #455166;background:#080d15;color:white;font-size:16px;outline:none}button{width:100%;margin-top:16px;padding:15px;border:0;border-radius:10px;background:#c7a45a;color:#111;font-size:16px;font-weight:bold}.hint{margin-top:22px;font-size:13px;line-height:1.55;color:#9ca7b7}.status{margin-top:12px;min-height:18px;font-size:13px;color:#e0bf74}</style>
+</head>
+<body>
+  <main class="card">
+    <h1>CHAMPIONS OF SINDRAGOR</h1>
+    <h2>ANDROID TEST CLIENT · v182</h2>
+    <label for="host">Endereço do jogo no seu PC</label>
+    <input id="host" inputmode="url" value="http://192.168.0.166:5173" placeholder="http://192.168.0.166:5173" />
+    <button id="connect">ENTRAR NO JOGO</button>
+    <div class="status" id="status"></div>
+    <div class="hint">O celular e o PC precisam estar na mesma rede Wi‑Fi. No PC, inicie o WEB aceitando conexões da rede e mantenha a API/PostgreSQL funcionando. Se o IP do PC mudar, altere apenas o endereço acima.</div>
+  </main>
+<script>
+  const input=document.getElementById('host');
+  const status=document.getElementById('status');
+  const saved=localStorage.getItem('sindragorServer');
+  if(saved) input.value=saved;
+  document.getElementById('connect').addEventListener('click',()=>{
+    let url=input.value.trim();
+    if(!/^https?:\/\//i.test(url)) url='http://'+url;
+    localStorage.setItem('sindragorServer',url);
+    status.textContent='Conectando a '+url+' ...';
+    setTimeout(()=>{ window.location.href=url; },150);
+  });
+</script>
+</body>
+</html>
