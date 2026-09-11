@@ -1,0 +1,13 @@
+{
+  "appId": "com.sindragor.champions",
+  "appName": "Champions of Sindragor",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https",
+    "cleartext": true,
+    "allowNavigation": ["*"]
+  },
+  "android": {
+    "allowMixedContent": true
+  }
+}
